@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+	<!-- 自动扫描所有注解该路径 -->  
+	<context:component-scan base-package="com.s4s2h4.*" />
+	
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName"
+			value="com.mysql.jdbc.Driver">
+		</property>
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/vj?useUnicode=true&amp;characterEncoding=UTF-8">
+		</property>
+		<property name="username" value="root"></property>
+		<property name="password" value="1234"></property>
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.show_sql">false</prop>
+         		<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+				<prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate4.SpringSessionContext</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>com/entity/TPaperQuestion.hbm.xml</value>
+				<value>com/entity/TRole.hbm.xml</value>
+				<value>com/entity/TExam.hbm.xml</value>
+				<value>com/entity/TMessage.hbm.xml</value>
+				<value>com/entity/TUserPost.hbm.xml</value>
+				<value>com/entity/TQuestion.hbm.xml</value>
+				<value>com/entity/TUserExamQuestion.hbm.xml</value>
+				<value>com/entity/TCourse.hbm.xml</value>
+				<value>com/entity/TPart.hbm.xml</value>
+				<value>com/entity/TUser.hbm.xml</value>
+				<value>com/entity/TUserExam.hbm.xml</value>
+				<value>com/entity/TPost.hbm.xml</value>
+				<value>com/entity/TUserCourse.hbm.xml</value>
+				<value>com/entity/TPaper.hbm.xml</value>
+				<value>com/entity/TForum.hbm.xml</value>
+				<value>com/entity/TCategory.hbm.xml</value>
+				<value>com/entity/Test.hbm.xml</value></list>
+		</property>
+		</bean>
+		
+	
+	<bean id="exam" class="com.action.ExamAction" scope="prototype"> 
+			<property name="factory" ref="sessionFactory"/> 
+	</bean> 
+	
+	<!-- 查找用户bean -->
+	<bean id="SearchUserAct" class="com.action.SearchUserAction" scope="prototype"> 
+			<property name="service" ref="TuserSev"/> 
+	</bean> 
+		<bean id="TuserSev" class="com.service.TUserService">
+			<property name="tuserdao" ref="TuserDao"/>
+	</bean>	
+	<bean id="TuserDao" class="com.dao.TUserDao">
+			<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<!-- 用户管理-用户信息修改 -->
+	<bean id="IDSearchUserAct" class="com.action.UMChange" scope="prototype"> 
+			<property name="service" ref="TuserSev"/> 
+	</bean>
+	<!-- 个人中心-用户信息获取 -->
+	<bean id="IDSearchUserMessageAct" class="com.action.UserMessageAction" scope="prototype"> 
+			<property name="service" ref="TuserSev"/> 
+	</bean>  
+	
+	<bean id="SearchCourseAct" class="com.action.SearchCourseAction" scope="prototype"> 
+			<property name="service" ref="SearchCourseSev"/> 
+			<property name="pageService" ref="TCoursePageSev"/>
+	</bean> 
+	
+	<bean id="SearchMyCourseAct" class="com.action.SearchMyCourseAction" scope="prototype">
+		<property name="service" ref="SearchCourseSev"/>
+		<property name="pageService" ref="TCoursePageSev"/>
+	</bean>
+	
+	<bean id="DeleteMyCourseAct" class="com.action.DeleteCourseAction" scope="prototype">
+		<property name="service" ref="SearchCourseSev"/>
+	</bean>
+	
+	<bean id="AddMyCourseAct" class="com.action.AddCourseAction" scope="prototype">
+		<property name="service" ref="SearchCourseSev"/>
+	</bean>
+	
+	<bean id="SearchCourseSev" class="com.service.TCourseService">
+			<property name="TCourseDao" ref="SearchCourseDao"/>
+	</bean>
+	<bean id="SearchCourseDao" class="com.dao.TCourseDao">
+			<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<bean id="TCoursePageSev" class="com.service.TCoursePageService">
+		<property name="pageDao" ref="PageDao"/>
+	</bean>
+	<bean id="PageDao" class="com.dao.PageDao">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+   
+   <!-- 社区个人资料 -->
+	<bean id="ForumLoginAct" class="com.action.ForumLoginAction"
+		scope="prototype">
+		<property name="service" ref="ForumUserSev" />
+	</bean>
+	<bean id="ForumUserAct" class="com.action.ForumUserAction" scope="prototype">
+		<property name="service" ref="ForumUserSev" />
+	</bean>
+	<bean id="ForumUserSev" class="com.service.TForumUserService">
+		<property name="TForumUserDao" ref="ForumUserDao" />
+	</bean>
+	<bean id="ForumUserDao" class="com.dao.TForumUserDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- 社区短信中心 -->
+	<bean id="ForumMsgAct" class="com.action.ForumMsgAction" scope="prototype">
+		<property name="service" ref="ForumMsgSev" />
+		<property name="tuserservice" ref="ForumUserSev" />
+	</bean>
+	<bean id="ForumMsgSev" class="com.service.TForumMsgService">
+		<property name="TForumMsgDao" ref="ForumMsgDao" />
+		<property name="TForumMsgPageDao" ref="ForumMsgPageDao" />
+	</bean>
+	<bean id="ForumMsgDao" class="com.dao.TForumMsgDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="ForumMsgPageDao" class="com.dao.TForumMsgPageDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+   
+	</beans>

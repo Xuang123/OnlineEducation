@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<constant name="struts.devMode" value="true"/>
+
+
+	<package name="com.action" extends="struts-default"  namespace="/" >
+      
+      
+       <action name="doSearch_in_prepaper"
+            class="exam"
+            method="doSearch_in_prepaper"
+            >
+            <result name="success">/judge.jsp</result>
+            <result name="false">/dashboard.jsp</result>
+      </action>
+      <action name="doSearch_in_answer"
+            class="exam"
+            method="doSearch_answer"
+            >
+            <result name="success">/judge.jsp</result>
+            <result name="false">/dashboard.jsp</result>
+      </action>
+      
+      <action name="doSearch"
+            class="exam"
+            method="doSearch"
+            >
+            <result name="success">/dashboard.jsp</result>
+            <result name="false">/dashboard.jsp</result>
+      </action>
+      <action name="doSearch_exam"
+            class="exam"
+            method="doSearch_exam"
+            >
+             <result name="success">/exam.jsp</result>
+            <result name="false">/dashboard.jsp</result>
+      </action>
+      <action name="doSearch_in_table"
+            class="exam"
+            method="doSearch_in_table"
+            >
+            <result name="success">/table_exam.jsp</result>
+            <result name="false">/dashboard.jsp</result>
+      </action>
+      <action name="doSearch_paper"
+            class="exam"
+            method="doSearch_paper"
+            >
+            <result name="success">/paper.jsp</result>
+            <result name="false">/dashboard.jsp</result>
+      </action>
+
+   </package>
+   
+   	<!-- 后台用户管理查找用户动作 -->
+	<package name="usertest" extends="struts-default" >
+		<action name="SearchAction" class="SearchUserAct" method="search">
+			<result name="SUCCESS">/UserManage.jsp</result>
+			<result name="NOT">/UserManage.jsp</result>
+		</action>		
+	</package>
+	<!-- 后台用户信息修改动作 -->
+	<package name="useridsearchtest" extends="struts-default" >
+		<action name="IDSearchAction" class="IDSearchUserAct" method="IDSearch">
+			<result name="SUCCESS">/UMChange.jsp</result>
+			<result name="NOT">/UMChange.jsp</result>
+		</action>		
+	</package>
+	<package name="usermessagechangetest" extends="struts-default" >
+		<action name="UMCAction" class="IDSearchUserAct" method="ChangeUserMessage">
+			<result name="SUCCESS">/UMChange.jsp</result>
+			<result name="NOT">/UMChange.jsp</result>
+		</action>		
+	</package>
+	
+	<!-- 个人信息查看动作 -->
+	<package name="usermessageshowtest" extends="struts-default" >
+		<action name="UMShowAction" class="IDSearchUserMessageAct" method="searchUser">
+			<result name="SUCCESS">/UserMassage.jsp</result>
+			<result name="NOT">/UserMassage.jsp</result>
+		</action>		
+	</package>
+	<!-- 个人信息修改动作 -->
+	<package name="usermessagetest" extends="struts-default" >
+		<action name="UMSChangeAction" class="IDSearchUserMessageAct" method="searchUser">
+			<result name="SUCCESS">/UserMessageChange.jsp</result>
+			<result name="NOT">/UserMessageChange.jsp</result>
+		</action>		
+	</package>
+	<package name="umctest" extends="struts-default" >
+		<action name="UMSCAction" class="IDSearchUserMessageAct" method="ChangeUM">
+			<result name="SUCCESS">/UserMessageChange.jsp</result>
+			<result name="NOT">/UserMessageChange.jsp</result>
+		</action>		
+	</package>
+	<!-- 个人密码修改动作 -->
+	<package name="userpasswordchangetest" extends="struts-default" >
+		<action name="UPCAction" class="IDSearchUserMessageAct" method="ChangePassword">
+			<result name="SUCCESS">/ChangePassword.jsp</result>
+			<result name="NOT">/ChangePassword.jsp</result>
+		</action>		
+	</package>
+	<!-- 查看详细信息动作 -->
+	<package name="userdetailmessageshow" extends="struts-default" >
+		<action name="UDMShowAction" class="IDSearchUserMessageAct" method="searchUser">
+			<result name="SUCCESS">/DetailMessage.jsp</result>
+			<result name="NOT">/DetailMessage.jsp</result>
+		</action>		
+	</package>
+	<!-- 查看课程动作 -->
+	<package name="usercourseshow" extends="struts-default" >
+		<action name="UCShowAction" class="IDSearchUserMessageAct" method="ShowUserCourse">
+			<result name="SUCCESS">/UMCourse.jsp</result>
+			<result name="NOT">/UMCourse.jsp</result>
+		</action>		
+	</package>
+	<!-- 查看考试动作 -->
+	<package name="userexamshow" extends="struts-default" >
+		<action name="UEShowAction" class="IDSearchUserMessageAct" method="ShowUserExam">
+			<result name="SUCCESS">/UMExam.jsp</result>
+			<result name="NOT">/UMExam.jsp</result>
+		</action>		
+	</package>
+	<!-- 删除用户动作-->
+	<package name="userdelete" extends="struts-default" >
+		<action name="DeleteUserAction" class="IDSearchUserMessageAct" method="deleteUser">
+			<result name="SUCCESS">/UserManage.jsp</result>
+			<result name="NOT">/UserManage.jsp</result>
+		</action>		
+	</package>
+	 
+	 <package name="loginpackage" extends="struts-default"  namespace="/">
+		<action name="LoginAction" class="com.action.LoginSystemAction" >
+			<result name="USER">/UserMassage.jsp</result>
+			<result name="SUCCESS">/UserMassage.jsp</result>
+			<result name="ERROR">/UserMassage.jsp</result>
+		</action>
+	</package>	
+	<package name="re" extends="struts-default" namespace="/">
+	 	<action name="register" class="com.action.register2" >
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="ERROR">/index.jsp</result>
+		</action>
+	 </package> 
+	
+	<package name="Change" extends="struts-default" namespace="/">
+	 	<action name="ChangePass" class="SearchUserAct" method="ChangePassword">
+			<result name="SUCCESS">/ChangePass.jsp</result>
+			<result name="NOT">/ChangePass.jsp</result>
+		</action>
+	 </package>
+	
+	 	<package name="UserChanged" extends="struts-default" namespace="/">
+	 	<action name="UserChange" class="SearchUserAct" method="searchUser" >
+			<result name="SUCCESS">/user.jsp</result>
+			<result name="NOT">/user.jsp</result>
+		</action>
+	 </package>
+	 
+	 <package name="test" extends="struts-default" namespace="/">
+		<action name="SSCaction" class="SearchCourseAct" method="search">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="NOT">/table.jsp</result>
+		</action>
+		
+		<action name="PGCaction" class="SearchCourseAct" method="PageChange">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="NOT">/table.jsp</result>
+		</action>
+		
+		<action name="SMCaction" class="SearchMyCourseAct" method="search">
+			<result name="NOT">/mycourse.jsp</result>
+		</action>
+		
+		<action name="MPGaction" class="SearchMyCourseAct" method="PageChange">
+			<result name="NOT">/mycourse.jsp</result>
+		</action>
+		
+		<action name="DMCaction" class="DeleteMyCourseAct" method="DeleteMyCourse">
+			<result name="NOT" type="chain">SMCaction</result>
+		</action>
+		
+		<action name="AMCaction" class="AddMyCourseAct" method="AddMyCourse">
+			<result name="NOT" type="chain">SMCaction</result>
+		</action>
+	</package>
+	
+	
+	<!-- struts json-->
+	<package name="ajax" extends="json-default" >
+	 	<action name="del" class="com.s4s2h4.action.TestAction" method="del">
+			<result type="json">
+			 	<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="ACCaction" class="AddMyCourseAct" method="AddCourseConfirm">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	 </package> 
+	 
+	 	<package name="forum" extends="struts-default">
+		<action name="forumlogin" class="ForumLoginAct" method="forumlogin">
+			<result name="success">/forum.jsp</result>
+			<result name="not">/forum_login.jsp</result>
+		</action>
+		<action name="loginout" class="ForumLoginAct" method="loginout">
+			<result name="success">/forum_login.jsp</result>
+		</action>
+		<action name="fuserinfo" class="ForumUserAct" method="searchinfo">
+			<result name="success">/fuserinfo.jsp</result>
+		</action>
+		<action name="fuserinfoedit" class="ForumUserAct" method="editinfo">
+			<result name="success">/fuserinfoedit.jsp</result>
+		</action>
+		<action name="fuserinfoupdate" class="ForumUserAct" method="updateinfo">
+			<result name="success" type="redirectAction">
+				<param name="actionName">fuserinfoedit</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		<action name="fotheruserinfo" class="ForumUserAct" method="searchotherinfo">
+			<result name="success">/fuserinfo.jsp</result>
+		</action>
+		
+		<action name="fsmsgget" class="ForumMsgAct" method="sendedmsg">
+			<result name="success">/fsmsg.jsp</result>
+		</action>
+		<action name="frmsgget" class="ForumMsgAct" method="receivedmsg">
+			<result name="success">/frmsg.jsp</result>
+		</action>
+		<action name="fsmsginfo" class="ForumMsgAct" method="sendmsginfo">
+			<result name="success">/sendmsginfo.jsp</result>
+		</action>
+		<action name="frmsginfo" class="ForumMsgAct" method="receivemsginfo">
+			<result name="success">/receivemsginfo.jsp</result>
+		</action>
+		<action name="fmsgsend" class="ForumMsgAct" method="fmsgsend">
+			<result name="success" type="redirectAction">
+				<param name="actionName">fsmsgget</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="not">/fmsgwrite.jsp</result>
+		</action>
+		<action name="fmsgdelete" class="ForumMsgAct" method="fmsgdelete">
+			<result name="success" type="redirectAction">
+				<param name="actionName">frmsgget</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+	</package>
+</struts>    

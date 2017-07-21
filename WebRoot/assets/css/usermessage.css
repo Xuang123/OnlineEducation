@@ -1,0 +1,35 @@
+@CHARSET "UTF-8";
+#leftmessage{
+	float:left;
+}
+#rightmessage{
+	float:left;
+	margin-left:240px;
+}
+#lrmessage{
+	float:left;
+	margin-left:200px;
+}
+#cmessage{
+	clear:both;
+}
+#message p{
+	line-height:20px
+}
+#tmessage{
+	margin-left:240px
+}
+#tmessage p{
+	letter-spacing:100px;
+}
+#messagebutton{
+	letter-spacing:100px;
+}
+#message{
+	margin-left:200px;
+	margin-top:50px;
+}
+#message font{
+	color:#FFFFFF;
+	
+}

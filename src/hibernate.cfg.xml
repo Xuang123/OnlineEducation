@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <!-- 各属性的配置-->
+        
+        <!-- 为true表示将Hibernate发送给数据库的sql显示出来 --> 
+        <property name="show_sql">true</property>
+        
+        <!-- SQL方言，这边设定的是MySQL -->
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+        
+        <!-- 一次读的数据库记录数 -->
+        <property name="jdbc.fetch_size">16</property>
+        
+        <!-- 设定对数据库进行批量删除 -->
+        <property name="jdbc.batch_size">30</property>
+        
+        <!--驱动程序-->
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        
+        <!-- JDBC URL -->
+        <property name="connection.url">jdbc:mysql://localhost:3306/vj?characterEncoding=utf8</property>
+        
+        <!-- 数据库用户名-->
+        <property name="connection.username">root</property>
+        
+        <!-- 数据库密码-->
+        <property name="connection.password">1234</property>
+        
+	<mapping resource="com/entity/TUser.hbm.xml"/>
+	<mapping resource="com/entity/TPaperQuestion.hbm.xml"/>
+	<mapping resource="com/entity/TRole.hbm.xml"/>
+	<mapping resource="com/entity/TExam.hbm.xml"/>
+	<mapping resource="com/entity/TMessage.hbm.xml"/>
+	<mapping resource="com/entity/TUserPost.hbm.xml"/>
+	<mapping resource="com/entity/TQuestion.hbm.xml"/>
+	<mapping resource="com/entity/TUserExamQuestion.hbm.xml"/>
+	<mapping resource="com/entity/TCourse.hbm.xml"/>
+	<mapping resource="com/entity/TPart.hbm.xml"/>
+	<mapping resource="com/entity/TUserExam.hbm.xml"/>
+	<mapping resource="com/entity/TPost.hbm.xml"/>
+	<mapping resource="com/entity/TUserCourse.hbm.xml"/>
+	<mapping resource="com/entity/TPaper.hbm.xml"/>
+	<mapping resource="com/entity/TForum.hbm.xml"/>
+	<mapping resource="com/entity/TCategory.hbm.xml"/>
+	<mapping resource="com/entity/Test.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>
